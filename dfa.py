@@ -13,7 +13,10 @@ transitions = {
 	# Η αρχική κατάσταση πρέπει να ονομάζεται 's0'.
 	# Για λεπτομέρειες δείτε στο:
 	# http://mixstef.github.io/courses/compilers/lecturedoc/unit1/module1.html#id7
-
+		's0':{'.':'s2','DIGIT':'s1'},
+		's1':{'.':'s3', 'DIGIT':'s1'},
+		's2':{'DIGIT':'s3'},
+		's3':{'DIGIT':'s3'}
      	      } 
 
 
@@ -23,7 +26,7 @@ accepts = {
 	# αντίστοιχων επιστρεφόμενων συμβόλων (tokens)
 	# Για λεπτομέρειες δείτε στο:
 	# http://mixstef.github.io/courses/compilers/lecturedoc/unit1/module1.html#id8
-
+		's3':'FLOAT_TOKEN'
      	  }
 
 
@@ -39,6 +42,8 @@ def get_char(text,pos):
 	# χαρακτήρες εισόδου εδώ.
 	# Για λεπτομέρειες δείτε στο:
 	# http://mixstef.github.io/courses/compilers/lecturedoc/unit1/module1.html#id11
+	
+	if c>='0' and c<='9': return 'DIGIT'    # 0..9 grouped together
 	
 	return c
 	
